@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cartID: 1
+  userID: 1
+  subTotal: 1.5
+  status: MyString
+
+two:
+  cartID: 1
+  userID: 1
+  subTotal: 1.5
+  status: MyString

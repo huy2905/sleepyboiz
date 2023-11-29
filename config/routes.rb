@@ -1,6 +1,12 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :ratings
+  resources :brands
+  resources :carts
+  resources :cart_items
+  resources :products
+  resources :comments
   
   resources :books
   resources :rooms

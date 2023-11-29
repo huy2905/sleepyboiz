@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_094819) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_29_105825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,10 +65,48 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_094819) do
     t.index ["subject_id"], name: "index_books_on_subject_id"
   end
 
+  create_table "brands", force: :cascade do |t|
+    t.integer "brandID"
+    t.string "brandName"
+    t.text "logo"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "cartItemID"
+    t.integer "productID"
+    t.integer "userID"
+    t.integer "cartID"
+    t.integer "quantity"
+    t.float "line_total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "cartID"
+    t.integer "userID"
+    t.float "subTotal"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "class_rooms", force: :cascade do |t|
     t.string "name"
     t.boolean "available"
     t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "commentID"
+    t.integer "userID"
+    t.integer "productID"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,6 +122,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_094819) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "products", force: :cascade do |t|
+    t.integer "productID"
+    t.integer "brandID"
+    t.string "productName"
+    t.text "image"
+    t.float "price"
+    t.float "discount_Percent"
+    t.text "description"
+    t.integer "stock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "ratingID"
+    t.integer "userID"
+    t.integer "productID"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -97,13 +156,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_094819) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.integer "userID"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "first_name"
-    t.string "last_name"
+    t.integer "phone"
+    t.string "fullName"
+    t.text "avatar"
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
