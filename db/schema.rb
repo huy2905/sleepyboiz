@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_02_051705) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_03_055014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_02_051705) do
   create_table "brands", force: :cascade do |t|
     t.integer "brandID"
     t.string "brandName"
-    t.text "logo"
+    t.string "logo"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -126,7 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_02_051705) do
     t.integer "productID"
     t.integer "brandID"
     t.string "productName"
-    t.text "image"
+    t.string "image"
     t.float "price"
     t.float "discount_Percent"
     t.text "description"
@@ -164,7 +164,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_02_051705) do
     t.datetime "remember_created_at"
     t.integer "phone"
     t.string "fullName"
-    t.text "avatar"
+    t.string "avatar"
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
