@@ -17,7 +17,7 @@
       </div>
   <div class="mb-6">
         <%= form.label :brandID, class: label_class %>
-          <%= form.number_field :brandID, class: input_class %>
+          <%= form.select :brandID, options_from_collection_for_select( Brand.all, 'brandID', 'brandName', selected = product.brandID), class: label_class %>
       </div>
   <div class="mb-6">
         <%= form.label :productName, class: label_class %>

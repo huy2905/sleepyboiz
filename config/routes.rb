@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :cart_items
   resources :products
   resources :comments
+  resources :books
   
 
   authenticate :user, ->(u) { u.admin? } do
