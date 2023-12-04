@@ -1,0 +1,41 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">Cartitem</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to cartitems_path, class: button_class(theme: "transparent") do %>
+      All Cartitems
+      <% end %>
+      <%= link_to edit_cartitem_path(@cartitem), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Cartitem:</p>
+        <p><%= @cartitem.cartitem_id %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Product:</p>
+        <p><%= @cartitem.product_id %></p>
+      </li>
+      <li>
+        <p class="font-semibold">User:</p>
+        <p><%= @cartitem.user_id %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Cart:</p>
+        <p><%= @cartitem.cart_id %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Quantity:</p>
+        <p><%= @cartitem.quantity %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Line total:</p>
+        <p><%= @cartitem.line_total %></p>
+      </li>
+  </ul>
+</div>

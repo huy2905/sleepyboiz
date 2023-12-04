@@ -1,0 +1,46 @@
+<%= form_with(model: cartitem) do |form| %>
+<% if cartitem.errors.any? %>
+<div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
+  <h2 class="text-lg font-semibold mb-3"><%= pluralize(cartitem.errors.count, "error") %> prohibited this cartitem from being saved:</h2>
+
+  <ul class="list-disc leading-relaxed">
+    <% cartitem.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+  <div class="mb-6">
+        <%= form.label :cartitem_id, class: label_class %>
+          <%= form.number_field :cartitem_id, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :product_id, class: label_class %>
+          <%= form.number_field :product_id, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :user_id, class: label_class %>
+          <%= form.number_field :user_id, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :cart_id, class: label_class %>
+          <%= form.number_field :cart_id, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :quantity, class: label_class %>
+          <%= form.number_field :quantity, class: input_class %>
+      </div>
+  <div class="mb-6">
+        <%= form.label :line_total, class: label_class %>
+          <%= form.text_field :line_total, class: input_class %>
+      </div>
+
+<%= form.submit class: button_class(theme: 'primary') %>
+
+<% if cartitem.persisted? %>
+<%= link_to "Cancel", cartitem, class: "text-neutral-700 underline inline-block ml-3" %>
+<% else %>
+<%= link_to "Cancel", cartitems_path, class:  "text-neutral-700 underline inline-block ml-3" %>
+<% end %>
+<% end %>

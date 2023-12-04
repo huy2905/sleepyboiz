@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_094819) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_03_173205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,10 +65,48 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_094819) do
     t.index ["subject_id"], name: "index_books_on_subject_id"
   end
 
+  create_table "brands", force: :cascade do |t|
+    t.integer "brand_id"
+    t.string "brandName"
+    t.text "logo"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cartitems", force: :cascade do |t|
+    t.integer "cartitem_id"
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "cart_id"
+    t.integer "quantity"
+    t.float "line_total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "cart_id"
+    t.integer "user_id"
+    t.float "subTotal"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "class_rooms", force: :cascade do |t|
     t.string "name"
     t.boolean "available"
     t.datetime "start_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "comment_id"
+    t.integer "user_id"
+    t.integer "product_id"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -82,6 +120,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_094819) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "brand_id"
+    t.string "productName"
+    t.text "image"
+    t.float "price"
+    t.float "discountPercent"
+    t.text "description"
+    t.integer "stock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating_id"
+    t.integer "user_id"
+    t.integer "product_id"
+    t.integer "starsRated"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rooms", force: :cascade do |t|
